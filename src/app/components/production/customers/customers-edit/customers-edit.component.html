@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-6">
+                    <button type="submit" class="btn btn-success btn-block" [disabled]="!customerForm.valid">Save</button>
+                </div>
+                <div class="col-xs-6">
+                    <button type="button" class="btn btn-danger btn-block" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12" style="margin-top: 5px">
+                    <div class="form-group">
+                        <label for="name">Customer Country Name</label>
+                        <input 
+                        type="text"
+                        id="name"
+                        formControlName="name"
+                        class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-xs-12" style="margin-top: 5px">
+                    <div class="form-group">
+                        <label for="imgPath">Country Flag Image URL</label>
+                        <input 
+                        type="text"
+                        id="imgPath"
+                        formControlName="imagePath"
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+            
+            <br>
+            
+            <div class="row">
+                <div class="col-xs-12" formArrayName="jsfParts">
+                <div 
+                style="margin-top:5px"
+                class="row" 
+                *ngFor="let jsfPart of customerForm.get('jsfParts').controls; let i = index"
+                [formGroupName]="i">
+                        <div class="col-xs-2">
+                            <label>JSF Partner</label>
+                        </div>
+                        <div class="col-xs-6" style = "padding-right:5px">
+                        <input 
+                        type="text"
+                        formControlName="name"
+                        class="form-control">
+                        </div>
+
+                        <div class="col-xs-3">
+                        <button
+                        class="btn btn-danger"
+                        (click) = "onRemoveJsfPart(i)"
+                        type="button">Delete JSF Partner</button>
+                        </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                    <button type="button" class="btn btn-success btn-block" style="margin-top:5px" (click)="onAddJsfPart()">Add JSF Partner</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

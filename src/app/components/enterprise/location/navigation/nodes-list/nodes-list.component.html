@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <h2 class="display-3">{{location.name | uppercase}}</h2>
+    <div *ngIf="location.locationType === 'Base'"class="row">
+      <p>Located in {{location.city}}, {{location.state}}</p>
+    </div>
+    <div *ngIf="location.locationType === 'Ship'"class="row">
+      <p>Home Port at {{location.city}}, {{location.state}}</p>
+    </div>
+    <button routerLink="../" class="btn btn-primary" style="border:0px"> &lt; Select Location</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-node-item
+      *ngFor="let nodeEl of nodes; let i = index"
+      [nodeIndex]=i
+      [node]=nodeEl>
+    </app-node-item>
+  </div>
+</div>

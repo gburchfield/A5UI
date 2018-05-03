@@ -1,0 +1,63 @@
+<div class="containter">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-primary btn-block" (click)="onBack()">Back</button>
+    </div>
+  </div>
+<hr>
+  <div class="row" *ngIf="showAssignNodeName && !isAssignNodeName">
+    <div class="col-xs-12">
+      <button class="btn btn-success btn-block" (click)="onAssignNodeName()">Assign Node Names</button>
+    </div>
+  </div>
+<hr *ngIf="showAssignNodeName && !isAssignNodeName">
+<div class="row" *ngIf="isAssignNodeName">
+  <app-nodename-edit [kit]="kit"></app-nodename-edit>
+</div>
+  <div class="row" *ngIf="!isAssignNodeName">
+    <div 
+      class="col-md-4"
+      *ngFor="let type of assetSubTypes">
+      <button 
+        class="list-group-item"
+        (click)="selectAssets(type)">
+        {{type}}s
+      </button>
+    </div>
+  </div>
+<hr *ngIf="!isAssignNodeName">
+  <div class="row" *ngIf="!isAssignNodeName">
+    <div class="col-xs-12">
+
+        <button 
+          *ngFor="let asset of selectedAssets; let i=index"
+          class="list-group-item"
+          
+          style="margin-bottom: 5px"
+          >
+
+          <div class="row">
+            <div class="col-xs-6">
+              <h6 class="text-center">{{asset.name}}</h6>
+              <h6 class="text-center">{{asset.serialNum}}</h6>
+            </div>
+            <div class="col-xs-6">
+              <button class="list-group-item" style="margin-right:5px">
+                {{displayTask(asset)}}
+                <button
+                  *ngIf="getTaskStatus(i,displayTask(asset))"
+                  class="btn btn-success pull-right"
+                  (click)="taskAction(i,displayTask(asset),getTaskStatus(i,displayTask(asset)))">
+                    {{getTaskStatus(i,displayTask(asset))}}
+                </button>
+              </button>
+            </div>
+          </div>
+          
+        </button>
+
+    </div>
+  </div>
+
+</div>

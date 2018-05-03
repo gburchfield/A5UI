@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h2>{{contractName}} Contract Definition</h2>
+        <form [formGroup]="contractForm" (ngSubmit)="onSubmit()">
+            
+            <div class="row">
+                <div class="col-xs-12" style="margin-top: 5px">
+                    <div class="form-group">
+                        <label for="contractName">Contract Name</label>
+                        <input 
+                        [(ngModel)] = "contractName"
+                        type="text"
+                        id="contractName"
+                        formControlName="name"
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12" style="margin-top: 5px">
+                    <div class="form-group">
+                        <label for="contractNumber">Contract Number</label>
+                        <input 
+                        type="text"
+                        id="contractNumber"
+                        formControlName="number"
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row rounded" style="border:1px solid #464545; margin:2px; padding:15px">
+                
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label>Period of Performance</label>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-6" style="margin-top: 5px">
+                        <div class="form-group">
+                            <label for="popStartDate">Start Date</label>
+                            <input 
+                            type="date"
+                            id="popStartDate"
+                            formControlName="popStartDate"
+                            class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6" style="margin-top: 5px">
+                        <div class="form-group">
+                            <label for="popEndDate">End Date</label>
+                            <input 
+                            type="date"
+                            id="popEndDate"
+                            formControlName="popEndDate"
+                            class="form-control">
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+
+            <br>
+            
+            <div class="row">
+                <div class="col-xs-6">
+                    <button type="submit" class="btn btn-success btn-block">Save</button>
+                </div>
+                <div class="col-xs-6">
+                    <button type="button" class="btn btn-danger btn-block" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

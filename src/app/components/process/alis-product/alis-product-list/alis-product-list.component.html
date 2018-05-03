@@ -1,0 +1,87 @@
+<hr>
+
+<div class="row">
+  <div *ngIf="!isTypeSelected">
+    <div class="col-xs-6 col-md-4" *ngFor="let productType of productTypes; let i = index;">
+        <a (click)="goToSubTypes(productType)" class="list-group-item clearfix">
+          <div class="pull-right">
+            <h5>{{productType}}s</h5>
+          </div>
+        </a>
+    </div>
+  </div>
+  <div *ngIf="isTypeSelected">
+    <div class="col-xs-12">
+        <a (click)="isTypeSelected = false; isSubTypeSelected = false" class="list-group-item clearfix">
+          <div>
+            <h3 class="text-center">{{selectedProductType}}s</h3>
+          </div>
+        </a>
+    </div>
+  </div>
+
+</div>
+
+<hr *ngIf="isTypeSelected">
+
+<div class="row" *ngIf="isTypeSelected">
+  <div *ngIf="!isSubTypeSelected">
+    <div class="col-xs-6 col-md-4" *ngFor="let productSubType of productSubTypes; let i = index;">
+        <a (click)="goToProducts(productSubType)" class="list-group-item clearfix">
+          <div class="pull-right">
+            <h5>{{productSubType}}</h5>
+          </div>
+        </a>
+    </div>
+  </div>
+  
+  <div *ngIf="isSubTypeSelected">
+    <div class="col-xs-12">
+        <a (click)="isSubTypeSelected = false" class="list-group-item clearfix">
+          <div>
+            <h3 class="text-center">{{selectedProductSubType}}s</h3>
+          </div>
+        </a>
+    </div>
+  </div>
+
+
+</div>
+
+<hr *ngIf="isSubTypeSelected">
+
+<div class="list-group" *ngIf="isSubTypeSelected">
+  <div class="row">
+    <div class="col-lg-6">
+      <h3 class="text-center">Unclassified</h3>
+      <a 
+        *ngFor="let product of unclassifiedProducts; let i = index;"
+        [routerLink]="product._id"
+        class="list-group-item clearfix"
+        >
+        <div class="pull-left"> 
+            <h4 class="list-group-item-heading">{{product.name}}</h4>
+        </div>
+          <div class="pull-right">
+            <h5>{{product.partNum}}</h5>
+          </div>
+      </a>
+    </div>
+    <div class="col-lg-6">
+      <h3 class="text-center">Classified</h3>
+      <a 
+        *ngFor="let product of classifiedProducts; let i = index;"
+        [routerLink]="product._id"
+        class="list-group-item clearfix"
+        >
+        <div class="pull-left"> 
+            <h4 class="list-group-item-heading">{{product.name}}</h4>
+        </div>
+          <div class="pull-right">
+            <h5>{{product.partNum}}</h5>
+          </div>
+      </a>
+    </div>
+  </div>
+  
+</div>

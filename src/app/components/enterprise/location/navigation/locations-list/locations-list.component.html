@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-4">
+    <span class="pull-left"><img [src]="country.imagePath" class="img-responsive center-block" style="max-height: 100px;"></span>
+  </div>
+  <div class="col-xs-4 text-center">
+    <h2 class="display-3">{{country.name | uppercase}}</h2>
+    <button routerLink="../" class="btn btn-primary" style="border:0px"> &lt; Select Country</button>
+  </div>
+  <div class="col-xs-4">
+    <span class="pull-right"><img [src]="country.imagePath"  class="img-responsive center-block" style="max-height: 100px;"></span>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-location-item
+      *ngFor="let locationEl of locations; let i = index "
+      [location]=locationEl
+      [index]=i>
+    </app-location-item>
+  </div>
+</div>

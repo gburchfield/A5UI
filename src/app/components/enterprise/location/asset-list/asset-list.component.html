@@ -1,0 +1,31 @@
+<div class="row">
+    <button class="btn btn-primary" routerLink="../"> &lt; Back</button>
+     <h2>{{node.name}} Assets <span><h4>{{node.squadName}}</h4></span></h2> 
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <label>Nodename</label>
+            </div>
+            <div class="col-md-3">
+                <label>Nomenclature</label>
+            </div>
+            <div class="col-md-3">
+                <label>Part Number</label>
+            </div>
+            <div class="col-md-1">
+                <label>LM SN</label>
+            </div>
+            <div class="col-md-2">
+                <label>IUID</label>
+            </div>
+            <div class="col-md-1">
+                <label>IUID SN</label>
+            </div>
+        </div>
+         <app-asset-item
+            *ngFor="let assetEl of assets"
+            [asset]=assetEl>
+        </app-asset-item> 
+    </div>
+</div>

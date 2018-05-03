@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><span>{{appComp.compName}}</span> Menu</h3>
+  </div>
+  <div class="panel-body">
+    <div class="list-group">
+      <ul class="nav nav-pills nav-stacked">
+        <app-menu-list
+          *ngFor = "let menuItemEl of appComp.menuItems"
+          [menuItem] = menuItemEl>
+        </app-menu-list>
+      </ul>
+    </div>
+  </div>
+</div>

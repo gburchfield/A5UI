@@ -1,0 +1,208 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="queryForm" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="row" style="margin:5px">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="kitRef">Kit Reference Number</label>
+                <input 
+                    id="kitRef" 
+                    class="form-control"
+                    formControlName="kitRef">
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="margin:5px">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="CLIN">Contract Line Item Number (CLIN)</label>
+                <input 
+                    id="CLIN" 
+                    class="form-control"
+                    formControlName="CLIN">
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="margin:5px">
+            <div class="col-xs-4">
+              <div class="form-group">
+                <label for="startPOP">POP Start</label>
+                <input 
+                    id="startPOP"
+                    type="date" 
+                    class="form-control"
+                    formControlName="startPOP">
+              </div>
+            </div>
+
+            <div class="col-xs-4">
+              <div class="form-group">
+                <label for="endPOP">POP End</label>
+                <input 
+                    id="endPOP"
+                    type="date"  
+                    class="form-control"
+                    formControlName="endPOP">
+              </div>
+            </div>
+
+            <div class="col-xs-4">
+              <div class="form-group">
+                <label for="cfuDate">Configured For Use Date</label>
+                <input 
+                    id="cfuDate"
+                    type="date" 
+                    class="form-control"
+                    formControlName="cfuDate">
+              </div>
+            </div>
+
+          </div>
+
+          <div *ngIf="false" class="row" style="margin:5px"> <!-- Making this false because back end can't handle a country/location change of kit/node -->
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="country">Country</label>
+                <select 
+                    id="country" 
+                    class="form-control"
+                    formControlName="country">
+                    <option value="default">What Country Will This Kit Be Delivered To?</option>
+                  <option
+                      *ngFor="let country of countryOptions"
+                      [value]="country.name">{{country.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="false" class="row" style="margin:5px"> <!-- Making this false because back end can't handle a country/location change of kit/node -->
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="location">Location</label>
+                <select 
+                    id="location" 
+                    class="form-control"
+                    formControlName="location">
+                    <option value="default">What Location Will This Kit Be Deliverd To?</option>
+                  <option
+                      *ngFor="let location of locationOptions"
+                      [value]="location._id">{{location.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="locationSelected" class="row" style="margin:5px">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="newNode">New Node?</label>
+                <select 
+                  id="newNode"
+                  class="form-control"
+                  formControlName="newNode"
+                  >
+                    <option value="default">Are You Delivering Kit to a New Node?</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="nodeExists" class="row" style="margin:5px">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="nodeRef">Node</label>
+                <select 
+                  id="nodeRef"
+                  class="form-control"
+                  formControlName="nodeRef"
+                  >
+                    <option value="default">What Node Will This Partial Kit Be Deliverd To?</option>
+                    <option
+                        *ngFor="let node of nodeOptions"
+                        [value]="node._id">{{node.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div *ngIf="newNodeSelected" class="row">
+        <div class="col-xs-12">
+
+          <div class="row" style="margin:5px">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="squadName">Squadon/Purpose</label>
+                <input 
+                    id="squadName" 
+                    class="form-control"
+                    formControlName="squadName">
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="margin:5px">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="countryOwner">Country Owner</label>
+                <select 
+                    id="countryOwner" 
+                    class="form-control"
+                    formControlName="countryOwner">
+                    <option value="default">What Country Will Own This Kit?</option>
+                  <option
+                      *ngFor="let country of countryOptions"
+                      [value]="country.name">{{country.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="countryOwnerSelected" class="row" style="margin:5px">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="jsfPartOwner">JSF Partner Owner</label>
+                <select 
+                    id="jsfPartOwner" 
+                    class="form-control"
+                    formControlName="jsfPartOwner">
+                    <option value="default">What JSF Partner Will Own This Kit?</option>
+                  <option
+                      *ngFor="let jsfPart of jsfPartOptions"
+                      [value]="jsfPart._id">{{jsfPart.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success btn-block">Update Kit</button>
+        </div>
+
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-primary btn-block" routerLink="../">&lt; Back to {{currentContract.name}} Details</button>
+        </div>
+
+      </div>  
+
+    </form>
+
+
+  </div>
+</div>

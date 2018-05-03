@@ -1,0 +1,19 @@
+
+<h2>{{customerName}} Locations:</h2>
+
+<hr>
+
+<router-outlet></router-outlet>
+
+<hr>
+
+<div class="row">
+  <div class="col-xs-6">
+    <button class="btn btn-primary btn-block" routerLink="../">&lt; Back to {{customerName}} Details</button>
+  </div>
+
+  <div class="col-xs-6">
+    <button class="btn btn-success btn-block" [routerLink]="customerIndex + '/new'">Add Location to {{customerName}}</button>
+  </div>
+</div>
+

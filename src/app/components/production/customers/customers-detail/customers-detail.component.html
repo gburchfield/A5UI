@@ -1,0 +1,52 @@
+<h3>{{ customer.name | uppercase }}</h3>
+<hr>
+<h4>JSF Partners:</h4>
+<p
+    *ngFor="let jsfPart of customer.jsfParts"
+    style="padding-left:20px">
+    {{jsfPart.name}}
+</p>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-primary btn-block" (click)="onEditCustomer()" style="margin:5px">Edit Customer</button>
+    </div>
+</div>
+<hr>
+<h4>Locations:</h4>
+<p
+  *ngFor="let locations of customer.locations"
+  style="padding-left:20px">
+{{locations.name}} 
+
+<i *ngIf="locations.locationType === 'Base'" class="fa fa-home fa-lg"></i>
+<i *ngIf="locations.locationType === 'Ship'"class="fa fa-ship fa-lg"></i>
+</p>
+<!-- <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>LM RMS PN</th>
+            <th>LM AERO PN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let prodChild of product.childAssets">
+            <th scope="row">{{prodChild.name}}</th>
+            <td>{{prodChild.partNum}}</td>
+            <td>{{prodChild.IUID}}</td>
+        </tr>
+    </tbody>
+</table> -->
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-teal btn-block" (click)="onEditLocations()" style="margin:5px">Edit Locations</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-danger btn-block" (click)="onDeleteCustomer()"style="margin:5px" disabled="true">Delete Customer</button>
+    </div>
+</div>

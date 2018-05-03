@@ -1,0 +1,18 @@
+<button 
+  class="btn btn-primary btn-block"
+  (click)="onAddContract()">Add New Customer</button>
+<hr>
+ <div class="list-group">
+  <a 
+    *ngFor="let customer of customers; let i = index;"
+    [routerLink]="i"
+    class="list-group-item clearfix"
+    >
+    <div class="pull-left"> 
+        <h4 class="list-group-item-heading">{{customer.name}}</h4>
+    </div>
+    <span class="pull-right">
+        <img [src]="customer.imagePath" alt="" class="img-responsive" style="max-height: 25px;">
+    </span>
+  </a>
+</div> 

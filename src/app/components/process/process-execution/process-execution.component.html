@@ -1,0 +1,30 @@
+<div class="row" *ngFor="let phase of process; let n = index">
+  <div class="col-xs-12">
+    <div class="list-group-item">
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            <h3>{{n + 1}}. {{phase.phaseName}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngFor="let task of phase.tasks; let i = index">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="list-group-item">
+            <h5>Task {{i + 1}}: {{task.taskName}}</h5>
+            <div class="row">
+              <div class="col-xs-3">
+                <h6>Expected Durration (Days):</h6>
+              </div>
+              <div class="col-xs-1">
+              <input type="number" [(ngModel)]="task.averageDuration" class="form-control">
+            </div>
+            </div>
+          <h6>Description:</h6>
+          <p>{{task.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

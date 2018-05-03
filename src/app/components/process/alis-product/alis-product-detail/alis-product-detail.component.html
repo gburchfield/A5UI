@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-8" style="margin-bottom:15px">
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <p>Asset Name:</p>
+                <h4 style="margin:10px;padding-left:10px">{{ product.name }}</h4>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <p>LM Part Number:</p>
+                <h4 style="margin:10px;padding-left:10px">{{ product.partNum }}</h4>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <p>Classification:</p>
+                <h4 style="margin:10px;padding-left:10px">{{ product.classification }}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <p>Aero PDM Part Number:</p>
+                <h4 style="margin:10px;padding-left:10px">{{ product.IUID }}</h4>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <p>Product Type:</p>
+                <h4 style="margin:10px;padding-left:10px">{{ product.assetType }}</h4>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <p>Product Sub-Type:</p>
+                <h4 style="margin:10px;padding-left:10px">{{ product.assetSubType }}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <button type="button" class="btn btn-info btn-block" (click)="onCancel()" style="margin:5px">&lt; Back To Product Catalog</button>
+        <button class="btn btn-primary btn-block" (click)="onEditProduct()" style="margin:5px">Edit Product</button>
+        <button class="btn btn-danger btn-block" (click)="onDeleteProduct()"style="margin:5px">Delete Product</button>
+    </div>
+</div>
+
+<hr>
+<p>Child Assets:</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>LM PN</th>
+            <th>Cage</th>
+            <th>MFG</th>
+            <th>Model Num</th>
+            <th>Vendor PN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let prodChild of product.childAssets">
+            <th scope="row"> {{prodChild.name}}</th>
+            <td> {{prodChild.partNum}}</td>
+            <td> {{prodChild.cage}}</td>
+            <td> {{prodChild.mfg}}</td>
+            <td> {{prodChild.modelNum}}</td>
+            <td> {{prodChild.venPartNum}}</td>
+        </tr>
+    </tbody>
+</table>

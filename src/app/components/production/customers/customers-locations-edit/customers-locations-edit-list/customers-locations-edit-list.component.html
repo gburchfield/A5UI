@@ -1,0 +1,16 @@
+<button
+  style="margin-bottom: 3px;"
+  *ngFor="let location of locations; let i = index"
+  
+  class="list-group-item clearfix"
+  >
+    <div class="pull-left">
+        <h4 class="list-group-item-heading">{{location.name}}</h4>
+    </div>
+
+    <div class="pull-right">
+        <button class="btn btn-primary" (click)="onLocationEdit(customerIndex,i)">Edit</button>
+        <button class="btn btn-danger" (click)="onDeleteLocation(customerIndex,i)" >Delete</button>
+    </div>
+
+</button>

@@ -1,0 +1,1 @@
+export var backendURL:string = 'http://141.240.24.172:8080/api/';

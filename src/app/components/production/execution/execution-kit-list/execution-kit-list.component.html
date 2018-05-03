@@ -1,0 +1,36 @@
+
+<h2>{{phase}}</h2>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="list-group">
+      <div class="nav nav-pills nav-stacked">
+
+        <button 
+          *ngFor="let kit of kits; let i=index"
+          class="list-group-item"
+          (click)="onKitSelect(i)"
+          style="margin-bottom: 5px"
+          >
+
+          <div class="row">
+            <div class="col-xs-6">
+              <h4 class="text-center">{{kit.contractRef.name}} Kit {{kit.kitRef}}</h4>
+            </div>
+
+             
+            <div class="col-xs-6">
+              <h6>{{isStarted(phase,kit).status}}</h6>
+              <div class="progress">
+                  <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{'width': isStarted(phase,kit).progress}">{{isStarted(phase,kit).progress}}</div>
+              </div>
+            </div> 
+
+          </div>
+          
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>

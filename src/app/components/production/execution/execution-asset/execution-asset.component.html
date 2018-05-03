@@ -1,0 +1,79 @@
+<div class="containter">
+
+  <div class="row">
+    <div class="col-xs-12 col-md-4">
+      <button class="btn btn-primary btn-block" (click)="onBack()">Back</button>
+    </div>
+  </div>
+<hr>
+  <div class="row">
+    <div class="col-xs-12 col-md-4">
+      <h5 class="text-center">{{asset.name}}</h5>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <h5 class="text-center">{{asset.partNum}}</h5>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <h5 class="text-center">{{asset.IUID}}</h5>
+    </div>
+  </div>
+<hr>
+
+  <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <h2> {{nodeName}}</h2>
+          <form [formGroup]="assetForm" (ngSubmit)="onSubmit()">
+              
+              <div class="row" *ngIf="phase === 'Configuration'">
+                  <div class="col-xs-12" style="margin-top: 5px">
+                      <div class="form-group">
+                          <label for="nodeName">ALIS Node Name</label>
+                          <input 
+                          [(ngModel)] = "nodeName"
+                          type="text"
+                          id="nodeName"
+                          formControlName="nodeName"
+                          class="form-control">
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="row" *ngIf="phase === 'Assembly'">
+                  <div class="col-xs-12" style="margin-top: 5px">
+                      <div class="form-group">
+                          <label for="serialNum">LM RMS Serial Number</label>
+                          <input 
+                          type="text"
+                          id="serialNum"
+                          formControlName="serialNum"
+                          class="form-control">
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="row" *ngIf="phase === 'Assembly'">
+                  <div class="col-xs-12" style="margin-top: 5px">
+                      <div class="form-group">
+                          <label for="IUIDsn">LM AERO Serial Number</label>
+                          <input 
+                          type="text"
+                          id="IUIDsn"
+                          formControlName="IUIDsn"
+                          class="form-control">
+                      </div>
+                  </div>
+              </div>
+
+              <br>
+              
+              <div class="row">
+                  <div class="col-xs-12">
+                      <button type="submit" class="btn btn-success btn-block">Save</button>
+                  </div>
+              </div>
+
+          </form>
+      </div>
+  </div>
+
+</div>

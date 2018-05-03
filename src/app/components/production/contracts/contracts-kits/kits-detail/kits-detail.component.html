@@ -1,0 +1,122 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="text-center">{{contract.name}} Kit {{kit.kitRef}}</h3>
+        <h3 class="text-center">Status: <span [ngStyle]="{'color':getKitStatusColor(kit.status)}">{{kit.status}}</span></h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-8"> 
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="row">Location</th>
+                    <td>{{kit.nodeRef.location.name}}</td> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Squadron/Purpose</th>
+                    <td>{{kit.nodeRef.squadName}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Contract Line Item Number</th>
+                    <td>{{kit.clin}}</td>
+                </tr>
+                
+                <tr>
+                    <th scope="row">Period of Performance</th>
+                    <td>{{dateToString(kit.startPOP) | date:'mediumDate'}} - {{dateToString(kit.endPOP) | date: 'mediumDate'}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Configured For Use Date</th>
+                    <td>{{dateToString(kit.cfuDate) | date: 'mediumDate'}}</td>
+                </tr>
+                <tr *ngIf="kit.achievedCFU">
+                    <th scope="row">Achieved Configured For Use Date</th>
+                    <td>{{dateToString(kit.achievedCFU) | date: 'mediumDate'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-xs-4">
+        <button style="margin-top:5px" class="btn btn-primary btn-block" routerLink="../../">&lt; Back to Contract Details</button>
+        <button style="margin-top:5px" class="btn btn-success btn-block" (click)="onViewStatus()">Status Kit</button>
+        <button style="margin-top:5px" class="btn btn-warning btn-block" routerLink="edit">Edit Kit</button>
+        <button style="margin-top:5px" class="btn btn-danger btn-block" (click)="onDeleteKit()">Delete Kit</button>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-xs-6" style="margin-top:10px">
+        <button class="btn btn-success btn-block" routerLink="assets">View Assets</button>
+    </div>
+    <div *ngIf="kit.status ==='Not Started'"class="col-xs-6" style="margin-top:10px">
+         <button class="btn btn-info btn-block" (click)="onBuildKit('start')">Start Kit Build</button>
+    </div>
+    <div *ngIf="kit.status ==='In Progress'"class="col-xs-6" style="margin-top:10px">
+        <button class="btn btn-danger btn-block" (click)="onBuildKit('stop')">Stop Kit Build</button>
+    </div>
+</div>
+
+<hr>
+<div *ngIf="viewStatus">
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Build Progress:</h3>
+        </div>
+        <div class="col-md-9">
+            <p style="margin-top:10px">Start Date: {{dateToString(kit.log.startDate) | date:'short'}}</p>
+            <p>Finish Date:</p>
+        </div>
+    </div>
+
+
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{'width': kitProgress}">{{kitProgress}}</div>
+    </div>
+
+    <table class="table table-striped table-inverse">
+        <thead>
+                <tr>
+                <th>Phase</th>
+                <th>Task</th>
+                <th *ngFor="let type of headerBuffer;">{{type.name}}({{type.count}})</th>
+                </tr> 
+        </thead>
+        <tbody>
+            <ng-template ngFor let-phase [ngForOf]="statusBuffer">
+                <tr>
+                <th scope="row" [attr.rowspan]="phase.phase.rowSpan">
+                    <h4 class="text-center">{{phase.phase.title}}</h4>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{'width': phase.phase.progress}">{{phase.phase.progress}}</div>
+                    </div>
+                </th>
+                <td>{{phase.firstTask.title}}</td>
+                <td *ngFor="let assetStatus of phase.firstTask.status">
+                    <button  
+                        class="btn btn-block" 
+                        [ngStyle]="{'background-color':getTaskStatusColor(assetStatus)}">
+                        {{getTaskStatusDate(assetStatus)| date:'MM/dd/yy'}}
+                    </button>
+                </td>
+                </tr>
+
+                <tr *ngFor="let assetStatus of phase.restOfTasks">
+                <td>{{assetStatus.title}}</td>
+                <td *ngFor="let status of assetStatus.status">
+                    <button 
+                        class="btn btn-block" 
+                        [ngStyle]="{'background-color':getTaskStatusColor(status)}">
+                        {{getTaskStatusDate(status)| date:'MM/dd/yy'}}
+                    </button>
+                </td>
+                </tr>
+            </ng-template>
+        </tbody>
+    </table>
+</div>
+

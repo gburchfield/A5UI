@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>{{ contract.name | uppercase }} Details</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <p>Period of Performance: {{dateToString(contract.popStartDate) | date:'mediumDate'}} - {{dateToString(contract.popEndDate) | date:'mediumDate'}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <p class="small">Last Updated: {{dateToString(contract.updated) | date:'mediumDate'}}</p>
+        </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary btn-block" routerLink="../" style="margin:5px">&lt; Back to Contracts</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-success btn-block" (click)="onEditContract()" style="margin:5px">Edit Contract</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-danger btn-block" (click)="onDeleteContract()"style="margin:5px">Delete Contract</button>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+<hr>
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <h4 class="text-center">KITS</h4>
+    </div>
+
+    <div class="col-xs-12" style="margin-top:10px">
+        <button class="btn btn-primary btn-block" (click)="onAddKit()" style="margin:10px">Add New Kit</button>
+    </div>
+    
+    <div class="col-xs-12">
+
+        <div class="list-group">
+            <div 
+                style="margin-bottom:3px"
+                class="col-xs-12 col-md-6 col-lg-4"
+                *ngFor="let kit of contract.kits">
+
+                <a 
+                    [routerLink]="'kits/'+ kit._id"
+                    class="list-group-item clearfix"
+                    >
+                    <div class="pull-left"> 
+                        <h4 class="list-group-item-heading">{{kit.kitRef}}</h4>
+                    </div>
+                     <div class="pull-right">
+                        <div class="row" style="margin-right:5px">
+                           <p class="pull-right" style="margin-bottom:1px">{{kit.nodeRef.location.name}}</p> 
+                        </div>
+                        <div class="row" style="margin-right:5px">
+                            <p class="pull-right" style="margin-bottom:0px">{{kit.status}}</p>
+                        </div>
+                        
+                    </div> 
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<hr>

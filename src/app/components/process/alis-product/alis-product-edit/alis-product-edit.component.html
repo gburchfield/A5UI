@@ -1,0 +1,174 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-6">
+                    <button type="submit" class="btn btn-success btn-block" [disabled]="!productForm.valid">Save</button>
+                </div>
+                <div class="col-xs-6">
+                    <button type="button" class="btn btn-danger btn-block" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-md-6" style="margin-top: 5px">
+                    <div class="form-group">
+                        <label for="name">Product Name</label>
+                        <input 
+                        type="text"
+                        id="name"
+                        formControlName="name"
+                        class="form-control">
+                    </div>
+                </div>
+            
+                <div class="col-xs-12 col-md-6" style="margin-top: 5px">
+                    <div class="form-group">
+                        <label for="classification">Product Classification</label>
+                        <input 
+                        type="text"
+                        id="classification"
+                        formControlName="classification"
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6" style="margin-top: 5px">
+                    <div class="form-group">
+                        <label for="IUID">Product IUID</label>
+                        <input 
+                        type="text"
+                        id="IUID"
+                        formControlName="IUID"
+                        class="form-control">
+                    </div>
+                </div>
+            
+                <div class="col-xs-12 col-md-6" style="margin-top: 5px">
+                    <div class="form-group">
+                        <label for="assetType">Product Type</label>
+                        <input 
+                        type="text"
+                        id="assetType"
+                        formControlName="assetType"
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6" style="margin-top: 5px">
+                    <div class="form-group">
+                        <label for="assetSubType">Product Sub Type</label>
+                        <input 
+                        type="text"
+                        id="assetSubType"
+                        formControlName="assetSubType"
+                        class="form-control">
+                    </div>
+                </div>
+            
+                <div class="col-xs-12 col-md-6" style="margin-top: 5px">
+                    <div class="form-group">
+                        <label for="partNum">Product Part Number</label>
+                        <input 
+                        type="text"
+                        id="partNum"
+                        formControlName="partNum"
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="button" class="btn btn-success btn-block" style="margin:10px" (click)="onAddAsset()">Add Child Asset</button>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12" style="padding-left:0px; padding-right:30px" formArrayName="childAssets">
+                <div 
+                style="margin:10px;"
+                class="row" 
+                *ngFor="let childAsset of productForm.get('childAssets').controls; let i = index"
+                [formGroupName]="i">
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-4" style = "padding-right:5px">
+                            <label style = "margin-left:5px">Name</label>
+                            <input 
+                            type="text"
+                            formControlName="name"
+                            class="form-control">
+
+                            <label style = "margin-left:5px; margin-top:5px">LM PN</label>
+                            <input 
+                            type="text"
+                            formControlName="partNum"
+                            class="form-control">
+                        </div>
+                        <div class="col-xs-4" style = "padding-left:5px; padding-right:5px">
+                            <label style = "margin-left:5px;">Cage</label>
+                            <input 
+                            type="text"
+                            formControlName="cage"
+                            class="form-control">
+
+                            <label style = "margin-left:5px; margin-top:5px">MFG</label>
+                            <input 
+                            type="text"
+                            formControlName="mfg"
+                            class="form-control">
+                        </div>
+                        <div class="col-xs-4" style = "padding-left:5px; padding-right:5px">
+                            <label style = "margin-left:5px">Model Num</label>
+                            <input 
+                            type="text"
+                            formControlName="modelNum"
+                            class="form-control">
+                            <label style = "margin-left:5px; margin-top:5px">Vendor PN</label>
+                            <input 
+                            type="text"
+                            formControlName="venPartNum"
+                            class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4" style="margin-top:20px">
+                            <div class="col-xs-4">
+                                <label>Hard Drive Qty:</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <input 
+                                type="number"
+                                formControlName="hardDrives"
+                                class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4" style="margin-top:20px">
+                            <div class="col-xs-4">
+                            <label>Server Qty:</label>
+                            </div>
+                            <div class="col-xs-8">
+                            <input 
+                            type="number"
+                            formControlName="servers"
+                            class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4" style="margin-top:20px;">
+                            <button
+                            class="btn btn-danger btn-block"
+                            (click) = "onRemoveAsset(i)"
+                            type="button">Remove Child Asset</button>
+                        </div>
+                    </div>
+
+                </div>
+                
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

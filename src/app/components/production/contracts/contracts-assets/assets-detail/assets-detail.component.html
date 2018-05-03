@@ -1,0 +1,36 @@
+<h5>{{contract.name}} Kit {{kit.kitRef}} Contents</h5>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Node Name</th>
+            <th>LM RMS PN</th>
+            <th>LM RMS SN</th>
+            <th>LM AERO PN</th>
+            <th>LM AERO SN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let asset of kit.assets; let i = index">
+            <th scope="row">{{asset.name}}</th>
+            <td>{{asset.nodeName}}</td>
+            <td>{{asset.partNum}}</td>
+            <td>{{asset.serialNum}}</td>
+            <td>{{asset.IUID}}</td>
+            <td>{{asset.IUIDsn}}</td>
+            <td><button class="btn btn-danger" (click)="onAssetDelete(i)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="row">
+  <div class="col-xs-12">
+      <button class="btn btn-success btn-block" routerLink="edit" style="margin:5px">Add Assets to Kit &gt;</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+      <button class="btn btn-primary btn-block" routerLink="../" style="margin:5px">&lt; Back to Kit Details</button>
+  </div>
+</div>
